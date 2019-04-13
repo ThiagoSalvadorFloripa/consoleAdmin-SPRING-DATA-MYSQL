@@ -1,12 +1,22 @@
 package com.br.salvador.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Thiago Salvador - thiago.salvadorpower@gmail.com
@@ -14,36 +24,45 @@ import javax.persistence.Id;
 
 @Entity
 public class User implements Serializable {
-	
+
 	private static final long serialVersionUID = 3143909135782656385L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String password;
 	private String repeat_password;
 	private String email;
 	private Integer gold;
-	private BigInteger token_facebook;
-	private String hash;
+	private String token_facebook;
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="user")
+	private Hash hash;
 	
-	
-	
+	@OneToMany(mappedBy="user")
+	private List<Played> played = new ArrayList<>();
+
 	public User() {
 	}
+
+	public User(Long id) {
+		this.id = id;
+	}
 	
-	public User ( Long id, String name, String password, String repeat_password, String email, Integer gold, BigInteger token_facebook, String hash) {
+
+	public User(Long id, String name, String password, String repeat_password, String email, Integer gold,
+			String token_facebook) {
 		super();
-		this.id = id; this.name = name; this.password = password; this.repeat_password = repeat_password;
-		this.email = email; this.gold = gold; this.token_facebook = token_facebook; this.hash = hash;
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.repeat_password = repeat_password;
+		this.email = email;
+		this.gold = gold;
+		this.token_facebook = token_facebook;
 	}
-	
-	public User (Long id){
-		this.id= id;
-	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -54,6 +73,15 @@ public class User implements Serializable {
 
 	public String getName() {
 		return name;
+	}
+	
+	
+	public Hash getHash() {
+		return hash;
+	}
+
+	public void setHash(Hash hash) {
+		this.hash = hash;
 	}
 
 	public void setName(String name) {
@@ -71,6 +99,17 @@ public class User implements Serializable {
 	public String getRepeat_password() {
 		return repeat_password;
 	}
+
+
+	public List<Played> getPlayed() {
+		return played;
+	}
+
+
+	public void setPlayed(List<Played> played) {
+		this.played = played;
+	}
+
 
 	public void setRepeat_password(String repeat_password) {
 		this.repeat_password = repeat_password;
@@ -92,20 +131,22 @@ public class User implements Serializable {
 		this.gold = gold;
 	}
 
-	public BigInteger getToken_facebook() {
+	public String getToken_facebook() {
 		return token_facebook;
 	}
 
-	public void setToken_facebook(BigInteger token_facebook) {
+	public void setToken_facebook(String token_facebook) {
 		this.token_facebook = token_facebook;
 	}
 
-	public String getHash() {
-		return hash;
-	}
+	
 
-	public void setHash(String hash) {
-		this.hash = hash;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -124,23 +165,5 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
