@@ -19,7 +19,7 @@ public class HashServices {
 	@Autowired
 	private HashRepository repo;
 
-	public Hash getHashdById(Long id) {
+	public Hash findById(Long id) {
 		Optional<Hash> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Hash.class.getName()));

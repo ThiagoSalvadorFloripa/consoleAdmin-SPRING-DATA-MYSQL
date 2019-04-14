@@ -22,8 +22,8 @@ public class RaffleResources {
 	private RaffleServices s;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long id) {
-		Raffle obj = s.getRaffleById(id);
+	public ResponseEntity<Raffle> find(@PathVariable Long id) {
+		Raffle obj = s.findById(id);
 		return ResponseEntity.ok().body(obj);
 
 	}

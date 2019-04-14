@@ -23,8 +23,8 @@ public class HashResources {
 	private HashServices s;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long id){
-		Hash obj = s.getHashdById(id);
+	public ResponseEntity<Hash> find(@PathVariable Long id){
+		Hash obj = s.findById(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}

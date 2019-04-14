@@ -19,7 +19,7 @@ public class PlayedServices {
 	@Autowired
 	private PlayedRepository repo;
 
-	public Played getPlayedById(Long id) {
+	public Played findById(Long id) {
 		Optional<Played> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Played.class.getName()));

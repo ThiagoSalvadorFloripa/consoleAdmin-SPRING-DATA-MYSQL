@@ -22,8 +22,8 @@ public class PlayedResources {
 	private PlayedServices s;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long id) {
-		Played obj = s.getPlayedById(id);
+	public ResponseEntity<Played> find(@PathVariable Long id) {
+		Played obj = s.findById(id);
 		return ResponseEntity.ok().body(obj);
 
 	}

@@ -19,7 +19,7 @@ public class RaffleServices {
 	@Autowired
 	private RaffleRepository repo;
 
-	public Raffle getRaffleById(Long id) {
+	public Raffle findById(Long id) {
 		Optional<Raffle> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Raffle.class.getName()));
