@@ -1,20 +1,24 @@
 package com.br.salvador.resources.exception;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @author Thiago Salvador - thiago.salvadorpower@gmail.com
  */
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private Long timestamp;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
+	private Date  timestamp;
 	private Integer status;
 	private String error;
 	private String message;
 	private String path;
 	
-	public StandardError(Long timestamp, Integer status, String error, String message, String path) {
+	public StandardError(Date timestamp, Integer status, String error, String message, String path) {
 		super();
 		this.timestamp = timestamp;
 		this.status = status;
@@ -23,11 +27,11 @@ public class StandardError implements Serializable {
 		this.path = path;
 	}
 
-	public Long getTimestamp() {
+	public Date  getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Long timestamp) {
+	public void setTimestamp(Date  timestamp) {
 		this.timestamp = timestamp;
 	}
 

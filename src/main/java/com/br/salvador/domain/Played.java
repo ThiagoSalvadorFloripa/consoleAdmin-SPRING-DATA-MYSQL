@@ -36,7 +36,6 @@ public class Played implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "raffle_id")
-	@JsonIgnore
 	private Raffle raffle;
 
 	public Played() {

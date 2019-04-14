@@ -63,7 +63,6 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		user2.setHash(hash2);
 		
 		repoRaffle.saveAll(Arrays.asList(raffle1, raffle2));
-		
 		repoUser.saveAll(Arrays.asList(user1,user2,user3));
 		repoPlayed.saveAll(Arrays.asList(played1, played2,played3,played4));
 		repoHash.saveAll(Arrays.asList(hash1, hash2));

@@ -31,6 +31,7 @@ public class Raffle implements Serializable {
 	private Integer current;
 
 	@OneToMany(mappedBy = "raffle")
+	@JsonIgnore
 	private List<Played> played = new ArrayList<>();
 
 	public Raffle() {
