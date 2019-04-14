@@ -52,6 +52,8 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		User user3 = new User(null, "JULIA PRADO", "123123", "123123", "THIAGO@GMAIL.COM", 500, "0000000000");
 		
 		Played played1 = new Played(null, "123456", 000000, user1,raffle1);
+		Played played3 = new Played(null, "654321", 000000, user1,raffle2);
+		Played played4 = new Played(null, "654321", 000000, user1,raffle2);
 		Played played2 = new Played(null, "654321", 000000, user2,raffle2);
 		
 		
@@ -63,7 +65,7 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		repoRaffle.saveAll(Arrays.asList(raffle1, raffle2));
 		
 		repoUser.saveAll(Arrays.asList(user1,user2,user3));
-		repoPlayed.saveAll(Arrays.asList(played1, played2));
+		repoPlayed.saveAll(Arrays.asList(played1, played2,played3,played4));
 		repoHash.saveAll(Arrays.asList(hash1, hash2));
 		
 		

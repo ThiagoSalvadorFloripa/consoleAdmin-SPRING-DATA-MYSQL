@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Thiago Salvador - thiago.salvadorpower@gmail.com
  */
@@ -28,6 +31,7 @@ public class Hash implements Serializable {
 	@OneToOne
 	@JoinColumn(name="user_id")
 	@MapsId
+	@JsonIgnore
 	private User user;
 
 	public Hash() {

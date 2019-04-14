@@ -18,6 +18,10 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * @author Thiago Salvador - thiago.salvadorpower@gmail.com
  */
@@ -38,6 +42,7 @@ public class User implements Serializable {
 	private String token_facebook;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy="user")
+	//@JsonIgnore
 	private Hash hash;
 	
 	@OneToMany(mappedBy="user")

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.salvador.domain.User;
 import com.br.salvador.repositories.UserRepository;
+import com.br.salvador.services.exceptions.ObjectNotFoundException;
 
 /**
  * @author Thiago Salvador - thiago.salvadorpower@gmail.com
@@ -20,7 +21,8 @@ public class UserServices {
 	
 	public User getUserById(Long id) {
 		Optional<User> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + User.class.getName()));
 	}
 	
 }

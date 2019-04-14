@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Thiago Salvador - thiago.salvadorpower@gmail.com
  */
@@ -23,13 +27,16 @@ public class Played implements Serializable {
 	private Long id;
 	private String number;
 	private Integer time;
-
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "raffle_id")
+	@JsonIgnore
 	private Raffle raffle;
 
 	public Played() {
