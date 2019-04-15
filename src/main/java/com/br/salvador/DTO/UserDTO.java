@@ -5,6 +5,7 @@ package com.br.salvador.DTO;
 
 import java.io.Serializable;
 
+
 import com.br.salvador.domain.User;
 
 public class UserDTO implements Serializable {

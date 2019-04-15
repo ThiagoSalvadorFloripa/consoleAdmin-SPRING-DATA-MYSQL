@@ -55,7 +55,6 @@ public class UserServices {
 	}
 	
 	public Page<User> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
-		//PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		PageRequest pageRequest =PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
