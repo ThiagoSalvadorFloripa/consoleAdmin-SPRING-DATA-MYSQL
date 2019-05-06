@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.salvador.DTO.UserDTO;
 import com.br.salvador.domain.User;
+import com.br.salvador.resources.Utils.URL;
 import com.br.salvador.services.UserServices;
 
 /**
@@ -83,6 +87,16 @@ public class UserResources {
 		return ResponseEntity.ok().body(listDto);
 		//for test http://localhost:8080/user/page?linesPerPage=3&page=1
 	}
+	
+	@RequestMapping(value = "/name", method = RequestMethod.GET)
+	public ResponseEntity<List<UserDTO>> findByName(@RequestParam(value = "name", defaultValue = "") String name) {
+		String nameDecode = URL.decodeParam(name);
+		List<UserDTO> dto = service.findUserByName(nameDecode);
+		return ResponseEntity.ok().body(dto);
+	}
+	
+	
+	
 
 }
 
