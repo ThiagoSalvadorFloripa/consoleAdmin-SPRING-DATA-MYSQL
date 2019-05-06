@@ -25,7 +25,7 @@ public class User implements Serializable {
 	private String repeat_password;
 	private String email;
 	private Integer gold;
-	private BigInteger token_facebook;
+	private String token_facebook;
 	private String hash;
 	
 	
@@ -33,7 +33,7 @@ public class User implements Serializable {
 	public User() {
 	}
 	
-	public User ( Long id, String name, String password, String repeat_password, String email, Integer gold, BigInteger token_facebook, String hash) {
+	public User ( Long id, String name, String password, String repeat_password, String email, Integer gold, String token_facebook, String hash) {
 		super();
 		this.id = id; this.name = name; this.password = password; this.repeat_password = repeat_password;
 		this.email = email; this.gold = gold; this.token_facebook = token_facebook; this.hash = hash;
@@ -92,11 +92,11 @@ public class User implements Serializable {
 		this.gold = gold;
 	}
 
-	public BigInteger getToken_facebook() {
+	public String getToken_facebook() {
 		return token_facebook;
 	}
 
-	public void setToken_facebook(BigInteger token_facebook) {
+	public void setToken_facebook(String token_facebook) {
 		this.token_facebook = token_facebook;
 	}
 

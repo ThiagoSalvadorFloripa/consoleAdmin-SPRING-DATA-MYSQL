@@ -24,7 +24,6 @@ public class UserResources {
 	public ResponseEntity<User> find(@PathVariable Long id){
 		User obj = service.getUserById(id);
 		return ResponseEntity.ok().body(obj);
-		
 	}
 	
 }
