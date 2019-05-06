@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.br.salvador.domain.User;
-import com.br.salvador.repositories.UserRepository;
+import com.br.salvador.domain.Raffle;
+import com.br.salvador.repositories.RaffleRepository;
 import com.br.salvador.services.exceptions.DataIntegrityException;
 import com.br.salvador.services.exceptions.ObjectNotFoundException;
 
@@ -20,23 +20,23 @@ import com.br.salvador.services.exceptions.ObjectNotFoundException;
  */
 
 @Service
-public class UserServices {
-	
+public class RaffleServices {
+
 	@Autowired
-	private UserRepository repo;
-	
-	public User findById(Long id) {
-		Optional<User> obj = repo.findById(id);
+	private RaffleRepository repo;
+
+	public Raffle findById(Long id) {
+		Optional<Raffle> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + User.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Raffle.class.getName()));
 	}
 	
-	public User insert(User obj) {
+	public Raffle insert(Raffle obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 	
-	public User update(User obj) {
+	public Raffle update(Raffle obj) {
 		this.findById(obj.getId());
 		return repo.save(obj);
 	}
@@ -46,40 +46,19 @@ public class UserServices {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw  new DataIntegrityException("Não é possível deletar um usuário que já tem uma jogada ou hash");
+			throw  new DataIntegrityException("It is not possible to delete a draw because a linked play already exists");
 		}
 		
 	}
-	public List<User> findAll() {
+	public List<Raffle> findAll() {
 		return repo.findAll();
 	}
 	
-	public Page<User> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+	public Page<Raffle> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest =PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+	
+	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

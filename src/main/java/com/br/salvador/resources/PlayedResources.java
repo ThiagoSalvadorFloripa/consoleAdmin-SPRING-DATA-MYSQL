@@ -2,7 +2,6 @@ package com.br.salvador.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,78 +14,67 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.br.salvador.DTO.UserDTO;
-import com.br.salvador.domain.User;
-import com.br.salvador.services.UserServices;
+import com.br.salvador.DTO.PlayedDTO;
+import com.br.salvador.domain.Played;
+import com.br.salvador.services.PlayedServices;
 
 /**
  * @author Thiago Salvador - thiago.salvadorpower@gmail.com
  */
 
 @RestController
-@RequestMapping(value = "/user")
-public class UserResources {
+@RequestMapping(value = "/played")
+public class PlayedResources {
 
 	@Autowired
-	private UserServices service;
+	private PlayedServices s;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<User> find(@PathVariable Long id) {
-		User obj = service.findById(id);
+	public ResponseEntity<Played> find(@PathVariable Long id) {
+		Played obj = s.findById(id);
 		return ResponseEntity.ok().body(obj);
-	}
 
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody User obj) {
-		obj = service.insert(obj);
+	public ResponseEntity<Void> insert(@RequestBody Played obj) {
+		obj = s.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody User obj, @PathVariable Long id) {
+	public ResponseEntity<Void> update(@RequestBody Played obj, @PathVariable Long id) {
 		obj.setId(id);
-		obj = service.update(obj);
+		obj = s.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Long id){
-		service.deleteById(id);
+		s.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<User>> findAll() {
-		List<User> list = service.findAll();
+	public ResponseEntity<List<Played>> findAll() {
+		List<Played> list = s.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@RequestMapping(value = "/listUsers",method = RequestMethod.GET)
-	public ResponseEntity<List<UserDTO>> findAllDTO() {
-		List<User> list = service.findAll();
-		List<UserDTO> listDto = list.stream().map(
-				obj -> new UserDTO(obj)).collect(Collectors.toList()); //convert a type list for other list
-		return ResponseEntity.ok().body(listDto);
-	}
 	
 	@RequestMapping(value = "/page",method = RequestMethod.GET)
-	public ResponseEntity<Page<UserDTO>> findPage(
+	public ResponseEntity<Page<PlayedDTO>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page, 
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage, 
-			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy, 
+			@RequestParam(value = "orderBy", defaultValue = "user_name") String orderBy, 
 			@RequestParam(value = "direction", defaultValue = "ASC")String direction) {
 		
-		Page<User> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<UserDTO> listDto = list.map(obj -> new UserDTO(obj)); //convert a type list for other list
+		Page<Played> list = s.findPage(page, linesPerPage, orderBy, direction);
+		Page<PlayedDTO> listDto = list.map(obj -> new PlayedDTO(obj)); //convert a type list for other list
 		return ResponseEntity.ok().body(listDto);
-		//for test http://localhost:8080/user/page?linesPerPage=3&page=1
+		//for test http://localhost:8080/Played/page?linesPerPage=3&page=1
 	}
-
+	
 }
-
-
-
-
-

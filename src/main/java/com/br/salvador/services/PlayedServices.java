@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.br.salvador.domain.User;
-import com.br.salvador.repositories.UserRepository;
+import com.br.salvador.domain.Played;
+import com.br.salvador.repositories.PlayedRepository;
 import com.br.salvador.services.exceptions.DataIntegrityException;
 import com.br.salvador.services.exceptions.ObjectNotFoundException;
 
@@ -20,23 +20,23 @@ import com.br.salvador.services.exceptions.ObjectNotFoundException;
  */
 
 @Service
-public class UserServices {
-	
+public class PlayedServices {
+
 	@Autowired
-	private UserRepository repo;
-	
-	public User findById(Long id) {
-		Optional<User> obj = repo.findById(id);
+	private PlayedRepository repo;
+
+	public Played findById(Long id) {
+		Optional<Played> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + User.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Played.class.getName()));
 	}
 	
-	public User insert(User obj) {
+	public Played insert(Played obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 	
-	public User update(User obj) {
+	public Played update(Played obj) {
 		this.findById(obj.getId());
 		return repo.save(obj);
 	}
@@ -46,40 +46,17 @@ public class UserServices {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw  new DataIntegrityException("Não é possível deletar um usuário que já tem uma jogada ou hash");
+			throw  new DataIntegrityException("Can not delete a move because a linked user already exists");
 		}
 		
 	}
-	public List<User> findAll() {
+	public List<Played> findAll() {
 		return repo.findAll();
 	}
 	
-	public Page<User> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+	public Page<Played> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest =PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
