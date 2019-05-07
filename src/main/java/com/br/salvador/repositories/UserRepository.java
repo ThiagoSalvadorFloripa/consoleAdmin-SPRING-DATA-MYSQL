@@ -21,7 +21,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findByEmail(String email);
 	
 	@Transactional(readOnly=true)
-	@Query(value = "SELECT DISTINCT u FROM User u WHERE u.name LIKE %:name%")
-	List<UserDTO> findUserByName(@Param("name") String name);
+	@Query(value = "SELECT obj FROM User obj WHERE obj.name LIKE :name%")
+	List<User> findUserByName(@Param("name") String name);
 	
 }

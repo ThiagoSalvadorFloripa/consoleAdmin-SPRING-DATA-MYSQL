@@ -60,7 +60,7 @@ public class UserServices {
 		return repo.findAll(pageRequest);
 	}
 	
-	public List<UserDTO> findUserByName(String name) {
+	public List<User> findUserByName(String name) {
 		return repo.findUserByName(name);
 	}
 	

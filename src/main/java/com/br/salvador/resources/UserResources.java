@@ -88,11 +88,14 @@ public class UserResources {
 		//for test http://localhost:8080/user/page?linesPerPage=3&page=1
 	}
 	
-	@RequestMapping(value = "/name", method = RequestMethod.GET)
-	public ResponseEntity<List<UserDTO>> findByName(@RequestParam(value = "name", defaultValue = "") String name) {
-		String nameDecode = URL.decodeParam(name);
-		List<UserDTO> dto = service.findUserByName(nameDecode);
-		return ResponseEntity.ok().body(dto);
+	
+	@RequestMapping("/find/{name}")//, method=RequestMethod.GET)
+	public ResponseEntity<List<UserDTO>> findByNamePage(@PathVariable("name") String name) {
+		//String nameDecode = URL.decodeParam(name);
+		System.out.println("----"+name);
+		List<User> list = service.findUserByName(name);
+		List<UserDTO> listDto = list.stream().map(obj -> new UserDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 	
