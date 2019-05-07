@@ -59,4 +59,12 @@ public class PlayedServices {
 		return repo.findAll(pageRequest);
 	}
 
+	public List<Played> findUserByName(String name) {
+		return repo.findUserByName(name);
+	}
+
+	public List<Played> findUserById(Long id) {
+		return repo.findUserById(id);
+	}
+
 }

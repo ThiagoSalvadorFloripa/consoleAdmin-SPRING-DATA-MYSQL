@@ -25,7 +25,7 @@ public class PlayedDTO implements Serializable {
 		this.id = played.getId();
 		this.number = played.getNumber();
 		this.time = played.getTime();
-		this.user_id = played.getId();
+		this.user_id = played.getUser().getId();
 		this.user_name = played.getUser().getName();
 		this.raffle_number = played.getRaffle().getNumber();
 	}

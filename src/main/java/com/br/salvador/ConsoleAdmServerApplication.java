@@ -17,6 +17,7 @@ import com.br.salvador.repositories.HashRepository;
 import com.br.salvador.repositories.PlayedRepository;
 import com.br.salvador.repositories.RaffleRepository;
 import com.br.salvador.repositories.UserRepository;
+import com.br.salvador.services.RaffleServices;
 
 @SpringBootApplication
 public class ConsoleAdmServerApplication implements CommandLineRunner {
@@ -32,6 +33,9 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 	
 	@Autowired
 	private RaffleRepository repoRaffle;
+	
+	@Autowired
+	private RaffleServices s; 
 
 	public static void main(String[] args) {
 		SpringApplication.run(ConsoleAdmServerApplication.class, args);
@@ -42,7 +46,7 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 
 		
 		BigDecimal amount = new BigDecimal("2500.000");
-		Raffle raffle1 = new Raffle(null,amount,123456,1 );
+		Raffle raffle1 = new Raffle(null,amount,123456,0 );
 		
 		BigDecimal amount1 = new BigDecimal("500.000");
 		Raffle raffle2 = new Raffle(null,amount1,123123,0 );
@@ -55,7 +59,8 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		Raffle raffle8 = new Raffle(null,amount1,123123,0 );
 		Raffle raffle9 = new Raffle(null,amount1,123123,0 );
 		Raffle raffle10 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle11 = new Raffle(null,amount1,123123,0 );
+		Raffle raffle11 = new Raffle(null,amount1,123123,1 );
+
 		
 		
 		
@@ -72,16 +77,16 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		
 		Played played1 = new Played(null, "123456", 000000, user1,raffle1);
 		Played played3 = new Played(null, "654321", 000000, user1,raffle2);
-		Played played4 = new Played(null, "654321", 000000, user1,raffle2);
-		Played played2 = new Played(null, "654321", 000000, user4,raffle2);
+		Played played4 = new Played(null, "650321", 000000, user1,raffle2);
+		Played played2 = new Played(null, "651321", 000000, user4,raffle2);
 		Played played6 = new Played(null, "123456", 000000, user1,raffle1);
-		Played played7 = new Played(null, "654321", 000000, user4,raffle2);
-		Played played8 = new Played(null, "654321", 000000, user1,raffle2);
-		Played played9 = new Played(null, "654321", 000000, user2,raffle2);
+		Played played7 = new Played(null, "659321", 000000, user4,raffle2);
+		Played played8 = new Played(null, "657321", 000000, user1,raffle2);
+		Played played9 = new Played(null, "653321", 000000, user2,raffle2);
 		Played played10 = new Played(null, "123456", 000000, user8,raffle1);
-		Played played31 = new Played(null, "654321", 000000, user1,raffle2);
-		Played played42 = new Played(null, "654321", 000000, user7,raffle2);
-		Played played21 = new Played(null, "654321", 000000, user2,raffle2);
+		Played played31 = new Played(null, "651521", 000000, user1,raffle2);
+		Played played42 = new Played(null, "658121", 000000, user7,raffle2);
+		Played played21 = new Played(null, "123123", 000000, user2,raffle11);
 		
 		
 		Hash hash1 = new Hash(null,"A526AS555AF5FA",user1);

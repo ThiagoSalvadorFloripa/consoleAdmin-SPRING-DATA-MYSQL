@@ -70,8 +70,7 @@ public class UserResources {
 	@RequestMapping(value = "/listUsers",method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> findAllDTO() {
 		List<User> list = service.findAll();
-		List<UserDTO> listDto = list.stream().map(
-				obj -> new UserDTO(obj)).collect(Collectors.toList()); //convert a type list for other list
+		List<UserDTO> listDto = list.stream().map(obj -> new UserDTO(obj)).collect(Collectors.toList()); //convert a type list for other list
 		return ResponseEntity.ok().body(listDto);
 	}
 	
@@ -89,11 +88,9 @@ public class UserResources {
 	}
 	
 	
-	@RequestMapping("/find/{name}")//, method=RequestMethod.GET)
-	public ResponseEntity<List<UserDTO>> findByNamePage(@PathVariable("name") String name) {
-		//String nameDecode = URL.decodeParam(name);
-		System.out.println("----"+name);
-		List<User> list = service.findUserByName(name);
+	@RequestMapping("/find/{name}")
+	public ResponseEntity<List<UserDTO>> findByName(@PathVariable("name") String name) {
+		List<User> list = service.findUserByName(name.toUpperCase());
 		List<UserDTO> listDto = list.stream().map(obj -> new UserDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}

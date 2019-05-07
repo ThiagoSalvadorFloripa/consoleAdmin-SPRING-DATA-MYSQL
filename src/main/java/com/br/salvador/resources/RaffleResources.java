@@ -2,6 +2,7 @@ package com.br.salvador.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.br.salvador.DTO.UserDTO;
 import com.br.salvador.domain.Raffle;
+import com.br.salvador.domain.User;
 import com.br.salvador.services.RaffleServices;
 
 /**
@@ -72,6 +75,24 @@ public class RaffleResources {
 		Page<Raffle> list = s.findPage(page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok().body(list);
 		//for test http://localhost:8080/Raffle/page?linesPerPage=3&page=1
+	}
+	
+	@RequestMapping(value = "/current",method = RequestMethod.GET)
+	public ResponseEntity<Raffle> findCurrent() {
+		Raffle obj = s.findCurrent();
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@RequestMapping(value = "/random",method = RequestMethod.GET)
+	public ResponseEntity<Integer> sortRandomNumber() {
+		int obj = s.sortRandomNumber();
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@RequestMapping(value = "/winner",method = RequestMethod.GET)
+	public ResponseEntity<Integer> winner() {
+		int obj = s.sortRandomNumber();
+		return ResponseEntity.ok().body(obj);
 	}
 
 }
