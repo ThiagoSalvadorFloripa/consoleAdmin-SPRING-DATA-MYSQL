@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.salvador.DTO.UserDTO;
+import com.br.salvador.DTO.UserWinnerDTO;
 import com.br.salvador.domain.Raffle;
 import com.br.salvador.domain.User;
 import com.br.salvador.services.RaffleServices;
@@ -89,10 +90,5 @@ public class RaffleResources {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@RequestMapping(value = "/winner",method = RequestMethod.GET)
-	public ResponseEntity<Integer> winner() {
-		int obj = s.sortRandomNumber();
-		return ResponseEntity.ok().body(obj);
-	}
 
 }

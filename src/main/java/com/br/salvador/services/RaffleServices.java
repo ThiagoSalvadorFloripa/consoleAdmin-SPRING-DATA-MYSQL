@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.br.salvador.DTO.UserWinnerDTO;
 import com.br.salvador.domain.Raffle;
 import com.br.salvador.repositories.RaffleRepository;
 import com.br.salvador.services.exceptions.DataIntegrityException;
@@ -28,6 +29,8 @@ public class RaffleServices {
 
 	@Autowired
 	private RaffleRepository repo;
+	
+	
 
 	public Raffle findById(Long id) {
 		Optional<Raffle> obj = repo.findById(id);
@@ -63,6 +66,10 @@ public class RaffleServices {
 	public List<Raffle> findAll() {
 		return repo.findAll();
 	}
+	
+	/*public List<UserWinnerDTO> getWinnerByLimit(Integer limit){
+		return repoWinner.getWinnerByLimit(limit);
+	}*/
 	
 	public Page<Raffle> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest =PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);

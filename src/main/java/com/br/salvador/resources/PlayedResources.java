@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.salvador.DTO.PlayedDTO;
 import com.br.salvador.DTO.UserDTO;
+import com.br.salvador.DTO.UserWinnerDTO;
 import com.br.salvador.domain.Played;
 import com.br.salvador.domain.User;
 import com.br.salvador.services.PlayedServices;
@@ -90,6 +91,14 @@ public class PlayedResources {
 	public ResponseEntity<List<PlayedDTO>> findUserById(@PathVariable("id") Long id) {
 		List<Played> list = s.findUserById(id);
 		List<PlayedDTO> listDto = list.stream().map(obj -> new PlayedDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@RequestMapping(value = "/winner",method = RequestMethod.GET)
+	public ResponseEntity<List<UserWinnerDTO>> winner(
+			@RequestParam(value = "limit", defaultValue = "0") Integer limit) {
+		List<Played> list = s.getWinnerByLimit(limit);
+		List<UserWinnerDTO> listDto = list.stream().map(obj -> new UserWinnerDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 	

@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.br.salvador.DTO.UserWinnerDTO;
 import com.br.salvador.domain.Played;
 import com.br.salvador.repositories.PlayedRepository;
 import com.br.salvador.services.exceptions.DataIntegrityException;
@@ -65,6 +66,10 @@ public class PlayedServices {
 
 	public List<Played> findUserById(Long id) {
 		return repo.findUserById(id);
+	}
+
+	public List<Played> getWinnerByLimit(int limit) {
+		return repo.getWinnerByLimit(limit);
 	}
 
 }

@@ -84,9 +84,9 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		Played played8 = new Played(null, "657321", 000000, user1,raffle2);
 		Played played9 = new Played(null, "653321", 000000, user2,raffle2);
 		Played played10 = new Played(null, "123456", 000000, user8,raffle1);
-		Played played31 = new Played(null, "651521", 000000, user1,raffle2);
-		Played played42 = new Played(null, "658121", 000000, user7,raffle2);
-		Played played21 = new Played(null, "123123", 000000, user2,raffle11);
+		Played played31 = new Played(null, "123123", 000000, user1,raffle11);
+		Played played42 = new Played(null, "123123", 000000, user2,raffle11);
+		Played played21 = new Played(null, "123123", 000000, user3,raffle11);
 		
 		
 		Hash hash1 = new Hash(null,"A526AS555AF5FA",user1);
