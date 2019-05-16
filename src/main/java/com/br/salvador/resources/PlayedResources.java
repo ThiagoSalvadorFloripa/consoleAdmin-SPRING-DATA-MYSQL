@@ -94,9 +94,8 @@ public class PlayedResources {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	@RequestMapping(value = "/winner",method = RequestMethod.GET)
-	public ResponseEntity<List<UserWinnerDTO>> winner(
-			@RequestParam(value = "limit", defaultValue = "0") Integer limit) {
+	@RequestMapping(value = "/winner/{limit}",method = RequestMethod.GET)
+	public ResponseEntity<List<UserWinnerDTO>> winner(@PathVariable("limit") Integer limit) {
 		List<Played> list = s.getWinnerByLimit(limit);
 		List<UserWinnerDTO> listDto = list.stream().map(obj -> new UserWinnerDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);

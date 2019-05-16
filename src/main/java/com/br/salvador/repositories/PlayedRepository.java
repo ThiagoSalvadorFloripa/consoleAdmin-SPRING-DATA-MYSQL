@@ -2,13 +2,15 @@ package com.br.salvador.repositories;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.br.salvador.DTO.UserWinnerDTO;
 import com.br.salvador.domain.Played;
 
 /**
@@ -26,9 +28,14 @@ public interface PlayedRepository extends JpaRepository<Played, Long> {
 	@Query(value = "SELECT obj FROM Played obj INNER JOIN User u ON obj.user = u.id WHERE u.id = :id")
 	List<Played> findUserById(@Param("id")Long id);
 	
-	@Transactional(readOnly=true)
+	
 	@Query(value = "SELECT p FROM Played  as p INNER JOIN Raffle r on p.raffle = r.id INNER JOIN User  u on p.user = u.id where r.current = 1 and r.number = p.number")
-	List<Played> getWinnerByLimit(@Param("limit")Integer limit);
+	List<Played> getWinnerByLimit(String name, Pageable pageable);
+	
+	
+	
+	
+	
 	
 }
 

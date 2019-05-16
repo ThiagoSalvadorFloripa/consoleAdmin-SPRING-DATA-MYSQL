@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
@@ -69,7 +70,11 @@ public class PlayedServices {
 	}
 
 	public List<Played> getWinnerByLimit(int limit) {
-		return repo.getWinnerByLimit(limit);
+		Pageable topTen = new PageRequest(0, limit);
+		List<Played> result = repo.getWinnerByLimit("", topTen);
+		return result;
 	}
+	
+	
 
 }

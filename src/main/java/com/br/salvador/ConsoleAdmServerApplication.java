@@ -13,9 +13,11 @@ import com.br.salvador.domain.Hash;
 import com.br.salvador.domain.Played;
 import com.br.salvador.domain.Raffle;
 import com.br.salvador.domain.User;
+import com.br.salvador.domain.UserLogin;
 import com.br.salvador.repositories.HashRepository;
 import com.br.salvador.repositories.PlayedRepository;
 import com.br.salvador.repositories.RaffleRepository;
+import com.br.salvador.repositories.UserLoginRepository;
 import com.br.salvador.repositories.UserRepository;
 import com.br.salvador.services.RaffleServices;
 
@@ -24,7 +26,10 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository repoUser;
-
+	
+	@Autowired
+	private UserLoginRepository repoLogin;
+	
 	@Autowired
 	private PlayedRepository repoPlayed;
 	
@@ -99,7 +104,9 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		repoPlayed.saveAll(Arrays.asList(played1, played2,played3,played4,played6,played7,played8,played9,played10,played31,played42,played21));
 		repoHash.saveAll(Arrays.asList(hash1, hash2));
 		
+		UserLogin userAdm = new UserLogin("thiago", "123456","Thiago Salvador" );
 		
+		repoLogin.save(userAdm);
 		
 		
 		
