@@ -16,7 +16,7 @@ public class PlayedDTO implements Serializable {
 	private Integer time;
 	private String user_name;
 	private Long user_id;
-	private Integer raffle_number;
+	private String raffle_number;
 
 	public PlayedDTO() {
 	}
@@ -70,11 +70,11 @@ public class PlayedDTO implements Serializable {
 		this.user_id = user_id;
 	}
 
-	public Integer getRaffle_number() {
+	public String getRaffle_number() {
 		return raffle_number;
 	}
 
-	public void setRaffle_number(Integer raffle_number) {
+	public void setRaffle_number(String raffle_number) {
 		this.raffle_number = raffle_number;
 	}
 

@@ -27,7 +27,7 @@ public class Raffle implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private BigDecimal amount;
-	private Integer number;
+	private String number;
 	private Integer current;
 
 	@OneToMany(mappedBy = "raffle")
@@ -41,7 +41,7 @@ public class Raffle implements Serializable {
 		this.id = id;
 	}
 
-	public Raffle(Long id, BigDecimal amount, Integer number, Integer current) {
+	public Raffle(Long id, BigDecimal amount, String number, Integer current) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -65,12 +65,11 @@ public class Raffle implements Serializable {
 		this.amount = amount;
 	}
 
-	public Integer getNumber() {
+	public String getNumber() {
 		return number;
 	}
-	
 
-	public void setNumber(Integer number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 

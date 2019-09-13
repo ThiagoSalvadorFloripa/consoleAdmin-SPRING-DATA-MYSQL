@@ -1,7 +1,6 @@
 package com.br.salvador;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +12,16 @@ import com.br.salvador.domain.Hash;
 import com.br.salvador.domain.Played;
 import com.br.salvador.domain.Raffle;
 import com.br.salvador.domain.User;
-import com.br.salvador.domain.UserLogin;
 import com.br.salvador.repositories.HashRepository;
 import com.br.salvador.repositories.PlayedRepository;
 import com.br.salvador.repositories.RaffleRepository;
-import com.br.salvador.repositories.UserLoginRepository;
 import com.br.salvador.repositories.UserRepository;
-import com.br.salvador.services.RaffleServices;
 
 @SpringBootApplication
 public class ConsoleAdmServerApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository repoUser;
-	
-	@Autowired
-	private UserLoginRepository repoLogin;
 	
 	@Autowired
 	private PlayedRepository repoPlayed;
@@ -38,9 +31,6 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 	
 	@Autowired
 	private RaffleRepository repoRaffle;
-	
-	@Autowired
-	private RaffleServices s; 
 
 	public static void main(String[] args) {
 		SpringApplication.run(ConsoleAdmServerApplication.class, args);
@@ -51,20 +41,20 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 
 		
 		BigDecimal amount = new BigDecimal("2500.000");
-		Raffle raffle1 = new Raffle(null,amount,123456,0 );
+		Raffle raffle1 = new Raffle(null,amount,"123456",0 );
 		
 		BigDecimal amount1 = new BigDecimal("500.000");
-		Raffle raffle2 = new Raffle(null,amount1,123123,0 );
+		Raffle raffle2 = new Raffle(null,amount1,"123123",0 );
 		
-		Raffle raffle3 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle4 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle5 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle6 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle7 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle8 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle9 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle10 = new Raffle(null,amount1,123123,0 );
-		Raffle raffle11 = new Raffle(null,amount1,123123,1 );
+		Raffle raffle3 = new Raffle(null,amount1,"123123",0 );
+		Raffle raffle4 = new Raffle(null,amount1,"12a3123",0 );
+		Raffle raffle5 = new Raffle(null,amount1,"123s123",0 );
+		Raffle raffle6 = new Raffle(null,amount1,"123d123",0 );
+		Raffle raffle7 = new Raffle(null,amount1,"123f123",0 );
+		Raffle raffle8 = new Raffle(null,amount1,"123f123",0 );
+		Raffle raffle9 = new Raffle(null,amount1,"123f123",0 );
+		Raffle raffle10 = new Raffle(null,amount1,"12f3123",0 );
+		Raffle raffle11 = new Raffle(null,amount1,"123f123",1 );
 
 		
 		
@@ -103,13 +93,6 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		repoUser.saveAll(Arrays.asList(user1,user2,user3,user4,user5,user6,user7,user8,user9, user10));
 		repoPlayed.saveAll(Arrays.asList(played1, played2,played3,played4,played6,played7,played8,played9,played10,played31,played42,played21));
 		repoHash.saveAll(Arrays.asList(hash1, hash2));
-		
-		UserLogin userAdm = new UserLogin("thiago", "123456","Thiago Salvador" );
-		
-		repoLogin.save(userAdm);
-		
-		
-		
 		
 	}
 

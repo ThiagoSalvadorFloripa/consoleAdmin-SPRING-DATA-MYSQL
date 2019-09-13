@@ -31,7 +31,7 @@ public class UserWinnerDTO implements Serializable {
 		this.id = String.valueOf(new Long(played.getUser().getId()));
 		this.name = played.getUser().getName();
 		this.numberPlayed = played.getNumber();
-		this.numberRaffle = Integer.toString(played.getRaffle().getNumber());
+		this.numberRaffle = played.getRaffle().getNumber();
 		this.current = Integer.toString(played.getRaffle().getCurrent());
 		this.time = Integer.toString(played.getTime());
 		this.amount = played.getRaffle().getAmount();
@@ -100,13 +100,5 @@ public class UserWinnerDTO implements Serializable {
 	public void setLimit(Integer limit) {
 		this.limit = limit;
 	}
-	
-	
-	
-	
-
-
-
-
 
 }

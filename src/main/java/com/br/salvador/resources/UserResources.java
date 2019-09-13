@@ -8,9 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.salvador.DTO.UserDTO;
 import com.br.salvador.domain.User;
-import com.br.salvador.domain.UserLogin;
-import com.br.salvador.resources.Utils.CustomErrorType;
-import com.br.salvador.services.UserLoginService;
 import com.br.salvador.services.UserServices;
 
 
@@ -36,10 +31,6 @@ import com.br.salvador.services.UserServices;
 public class UserResources {
 
 	public static final Logger logger = LoggerFactory.getLogger(UserResources.class);
-
-	@Autowired
-	private UserLoginService userLoginService;
-	
 	
 	@Autowired
 	private UserServices service;
@@ -104,30 +95,6 @@ public class UserResources {
 		List<UserDTO> listDto = list.stream().map(obj -> new UserDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
-	
-	//--------Login---------------------
-	
-	// create a new account
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@CrossOrigin
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> createUser(@RequestBody UserLogin newUser) {
-		if (userLoginService.find(newUser.getUsername()) != null) {
-			logger.error("username Already exist " + newUser.getUsername());
-			return new ResponseEntity(
-					new CustomErrorType("user with username " + newUser.getUsername() + "already exist "),
-					HttpStatus.CONFLICT);
-		}
-		newUser.setRole("USER");
-		return new ResponseEntity<UserLogin>(userLoginService.save(newUser), HttpStatus.CREATED);
-	}
-	
-	
-	
 
 }
-
-
-
-
 

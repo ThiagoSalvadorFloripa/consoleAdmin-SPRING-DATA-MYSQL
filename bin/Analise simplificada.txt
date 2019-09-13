@@ -1,0 +1,27 @@
+-----FAZER
+
+------Premiação R$: 500.00
+Deixar fixo
+1-USER------------------
+lista
+edita
+deletat
+pesquisar por id, nome
+
+2-Ver sorteio------------------
+listar todos sorteio
+botão sorteio atual
+editar sorteio aumentar ou diminuir(Alavencar)
+
+3-Ver jogada------------------
+listar todas jogas
+pesquisar jogas por id/nome do jogador
+
+4-Criar Sorteio------------------
+campos:
+numero sorteio, valor, atual ( check box atual: buscar o sorteio atual editar colocar 0)
+
+5- Ver ganhador------------------
+Listar ganhadores pelo numero do sorteio atual
+
+
