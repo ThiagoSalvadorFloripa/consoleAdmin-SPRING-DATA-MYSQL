@@ -66,6 +66,13 @@ public class PlayedResources {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@RequestMapping(value = "/listPlayed",method = RequestMethod.GET)
+	public ResponseEntity<List<PlayedDTO>> findAllDTO() {
+		List<Played> list = s.findAll();
+		List<PlayedDTO> listDto = list.stream().map(obj -> new PlayedDTO(obj)).collect(Collectors.toList()); //convert a type list for other list
+		return ResponseEntity.ok().body(listDto);
+	}
+	
 	
 	@RequestMapping(value = "/page",method = RequestMethod.GET)
 	public ResponseEntity<Page<PlayedDTO>> findPage(

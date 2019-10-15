@@ -68,10 +68,10 @@ public class ConsoleAdmServerApplication implements CommandLineRunner {
 		User user7 = new User(null, "CORROI SALVADOR", "123123", "123123", "CORROI@GMAIL.COM", 500, "0000000000");
 		User user8 = new User(null, "CLEITON PRADO", "123123", "123123", "CLEITON@GMAIL.COM", 500, "0000000000");
 		User user9 = new User(null, "ESTUPLADOR PRADO", "123123", "123123", "ESTUPLADOR@GMAIL.COM", 500, "0000000000");
-		User user10 = new User(null, "ARTUR PRADOR", "123123", "123123", "ARTUR@GMAIL.COM", 500, "0000000000");
+		User user10 = new User(null, "ARTUR PRADOR", "123123", "123123", "VIADO@GMAIL.COM", 500, "0000000000");
 		
-		Played played1 = new Played(null, "123456", 000000, user1,raffle1);
-		Played played3 = new Played(null, "654321", 000000, user1,raffle2);
+		Played played1 = new Played(null, "123f123", 000000, user1,raffle11);
+		Played played3 = new Played(null, "123f123", 000000, user2,raffle11);
 		Played played4 = new Played(null, "650321", 000000, user1,raffle2);
 		Played played2 = new Played(null, "651321", 000000, user4,raffle2);
 		Played played6 = new Played(null, "123456", 000000, user1,raffle1);
